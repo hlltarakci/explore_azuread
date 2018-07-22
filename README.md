@@ -97,6 +97,10 @@ Any application that outsources authentication to Azure AD must be registered in
 
 - **Key:** The key that is sent along with an Application ID when authenticating to Azure AD to call a web API.
 
+**Single Tenant:** If you are building an application just for your organization, it must be registered in your company’s directory by using the Azure portal.
+
+**Multi-Tenant:** If you are building an application that can be used by users outside your organization, it must be registered in your company’s directory, but also must be registered in each organization’s directory that will be using the application. To make your application available in their directory, you can include a sign-up process for your customers that enables them to consent to your application. When they sign up for your application, they will be presented with a dialog that shows the permissions the application requires, and then the option to consent. Depending on the required permissions, an administrator in the other organization may be required to give consent. When the user or administrator consents, the application is registered in their directory. 
+
 ## Common Endpoint vs Tenant Endpoint
 
 Some additional considerations arise when developing a multi-tenant application instead of a single tenant application. 
