@@ -115,6 +115,35 @@ Common endpoint is **https://login.microsoftonline.com/common** for all director
 
 **The common endpoint is especially important to consider when developing your application because you’ll need the necessary logic to handle multiple tenants during sign-in, sign-out, and token validation.**
 
-## Azure AD v1.0 Endpoint vs v2.0 Endpoint
+## Usage Scenario: a web application that needs to get resources from a web API
 
+![diagram](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/active-directory-authentication-scenarios/web_app_to_web_api.png)
+
+There are two identity types that the web application can use to authenticate and call the web API:
+
+- **Application identity:** This scenario uses OAuth 2.0 client credentials grant to authenticate as the application and access the web API. 
+
+- **Delegated user identity:** This scenario can be accomplished in two ways: OpenID Connect, and OAuth 2.0 authorization code grant with a confidential client. The web application obtains an access token for the user, which proves to the web API that the user successfully authenticated to the web application and that the web application was able to obtain a delegated user identity to call the web API. This access token is sent in the request to the web API, which authorizes the user and returns the desired resource.
+
+### Application Identity with OAuth 2.0 Client Credentials grant
+A user is signed in to Azure AD in the web application.
+
+The web application needs to acquire an access token so that it can authenticate to the web API and retrieve the desired resource. It makes a request to Azure AD’s token endpoint, providing the credential, Application ID, and web API’s application ID URI.
+
+Azure AD authenticates the application and returns a JWT access token that is used to call the web API.
+
+Over HTTPS, the web application uses the returned JWT access token to add the JWT string with a “Bearer” designation in the Authorization header of the request to the web API. The web API then validates the JWT token, and if validation is successful, returns the desired resource.
+
+### Delegated User Identity with OpenID Connect
+A user is signed in to a web application using Azure AD. If the user of the web application has not yet consented to allowing the web application to call the web API on its behalf, the user will need to consent. The application will display the permissions it requires, and if any of these are administrator-level permissions, a normal user in the directory will not be able to consent. This consent process only applies to multi-tenant applications, not single tenant applications, as the application will already have the necessary permissions. When the user signed in, the web application received an ID token with information about the user, as well as an authorization code.
+
+Using the authorization code issued by Azure AD, the web application sends a request to Azure AD’s token endpoint that includes the authorization code, details about the client application (Application ID and redirect URI), and the desired resource (application ID URI for the web API).
+
+The authorization code and information about the web application and web API are validated by Azure AD. Upon successful validation, Azure AD returns two tokens: a JWT access token and a JWT refresh token.
+
+Over HTTPS, the web application uses the returned JWT access token to add the JWT string with a “Bearer” designation in the Authorization header of the request to the web API. The web API then validates the JWT token, and if validation is successful, returns the desired resource.
+
+**Token expiration:** When the web application uses its authorization code to get a JWT access token, it also receives a JWT refresh token. When the access token expires, the refresh token can be used to re-authenticate the user without requiring them to sign in again. This refresh token is then used to authenticate the user, which results in a new access token and refresh token.
+
+## Azure AD v1.0 Endpoint vs v2.0 Endpoint
 Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some limitations.
