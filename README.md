@@ -97,3 +97,16 @@ Any application that outsources authentication to Azure AD must be registered in
 
 - **Key:** The key that is sent along with an Application ID when authenticating to Azure AD to call a web API.
 
+## Common Endpoint vs Tenant Endpoint
+
+Some additional considerations arise when developing a multi-tenant application instead of a single tenant application. 
+
+If you are making your application available to users in multiple directories, you need a mechanism to determine which tenant they’re in.
+
+A single tenant application only needs to look in its own directory for a user, while a multi-tenant application needs to identify a specific user from all the directories in Azure AD. 
+
+To accomplish this task, Azure AD provides a common authentication endpoint where any multi-tenant application can direct sign-in requests, instead of a tenant-specific endpoint. 
+
+Common endpoint is **https://login.microsoftonline.com/common** for all directories in Azure AD, whereas a tenant-specific endpoint might be **https://login.microsoftonline.com/contoso.onmicrosoft.com**.
+
+**The common endpoint is especially important to consider when developing your application because you’ll need the necessary logic to handle multiple tenants during sign-in, sign-out, and token validation.**
