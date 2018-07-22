@@ -110,3 +110,7 @@ To accomplish this task, Azure AD provides a common authentication endpoint wher
 Common endpoint is **https://login.microsoftonline.com/common** for all directories in Azure AD, whereas a tenant-specific endpoint might be **https://login.microsoftonline.com/contoso.onmicrosoft.com**.
 
 **The common endpoint is especially important to consider when developing your application because you’ll need the necessary logic to handle multiple tenants during sign-in, sign-out, and token validation.**
+
+## Azure AD v1.0 Endpoint vs v2.0 Endpoint
+
+Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some limitations.
