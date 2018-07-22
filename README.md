@@ -148,7 +148,7 @@ Over HTTPS, the web application uses the returned JWT access token to add the JW
 ## Azure AD v1.0 Endpoint vs v2.0 Endpoint
 Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some limitations.
 
-## Hands-On / A PassportJS strategy for Microsoft Azure Active Directory: [**passport-azure-ad**](https://github.com/AzureAD/passport-azure-ad)
+## Hands-On / A PassportJS strategy for Microsoft Azure AD: [**passport-azure-ad**](https://github.com/AzureAD/passport-azure-ad)
 [Example Code](https://github.com/AzureADQuickStarts/WebApp-OpenIDConnect-NodeJS)
  
 - [Register the app.](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-devquickstarts-openidconnect-nodejs#step-1-register-an-app) 
@@ -162,7 +162,7 @@ Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 end
 	``` js
 	var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 	```
-	
+
 - Strategies in passport require a *validate* function that accepts credentials (such as an OpenID identifier), and invokes a callback with a user object.
  
     Looking at the strategy, you see that we pass it a function that has a token and a done as the parameters. The strategy comes back to us after it does its work. Then we want to store the user and stash the token so we don't need to ask for it again.
