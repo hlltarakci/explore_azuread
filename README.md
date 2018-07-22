@@ -147,3 +147,8 @@ Over HTTPS, the web application uses the returned JWT access token to add the JW
 
 ## Azure AD v1.0 Endpoint vs v2.0 Endpoint
 Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some limitations.
+
+## Code Samples
+[Azure AD Node.js web app getting started](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-devquickstarts-openidconnect-nodejs)
+
+[My PassportJs POC](https://github.com/hlltarakci/poc_passportjs)
