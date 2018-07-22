@@ -18,7 +18,13 @@ This is an exploration of Azure AD, notes taken and organized reading [**Azure A
 
 - **sign-out:** The process of unauthenticating an end user, detaching the user state associated with the client application session during sign-in.
 
+- **single tenant application:** A single tenant application is intended for use in one organization. It only needs to be accessed by users in one directory, and as a result, to be provisioned in one directory. These applications are typically registered by a developer in the organization.
+
 - **multi-tenant application:** A class of application that enables sign in and consent by users provisioned in any Azure AD tenant, including tenants other than the one where the client is registered. 
+
+    A multi-tenant application is intended for use in many organizations, not just one organization. Multi-tenant applications need to be provisioned in each directory where they will be used.
+    
+    When a user or administrator from a different organization signs up to use the application, they are presented with a dialog that displays the permissions the application requires. The user or administrator can then consent to the application, which gives the application access to the stated data, and finally registers the application in their directory. 
   
 - **client application:** As defined by the OAuth2 Authorization Framework, an application that makes protected resource requests on behalf of the resource owner. 
 
