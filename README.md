@@ -163,7 +163,7 @@ Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 end
 	var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 	```
 
-- Strategies in passport require a *validate* function that accepts credentials (such as an OpenID identifier), and invokes a callback with a user object.
+- Strategies in passport require a *validate* function that accepts credentials (such as an OpenID identifier), and invokes a callback with a user object. [verify callback](https://github.com/AzureAD/passport-azure-ad#5113-verify-callback)
  
     Looking at the strategy, you see that we pass it a function that has a token and a done as the parameters. The strategy comes back to us after it does its work. Then we want to store the user and stash the token so we don't need to ask for it again.
 	
