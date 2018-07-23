@@ -177,6 +177,13 @@ Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 end
 
 - Use Passport to issue sign-in and sign-out requests to Azure AD.
 
+## Troubleshoot #1: proxy issue
+I had proxy issue when *code* is used in *responseType* behind corporate proxy. The reason is passport.authenticate() method which is used in callback uses *http(s).request* and somehow it could not consider my proxy environment variables. 
+
+In theory, npm uses proxies defined in .npmrc file which might be set by using npm config set.. command. Nodejs uses environment variable settings.
+
+I used **global-tunnel-ng** to ensure nodejs is using my proxies. Then, since **global-tunnel-ng** does not currently support *no-proxy* environment variable, my internal config function at *localhost* is not reachable behind proxy. To fix that, i initialized **global-tunnel-ng** just before passport.authenticate() in callback method and ended it right afterwards.
+
 ## Code Samples
 [**Azure AD Node.js web app getting started:**](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-devquickstarts-openidconnect-nodejs) Use Passport to:
 - Sign the user in to the app with Azure Active Directory (Azure AD).
