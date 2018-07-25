@@ -187,9 +187,11 @@ In theory, npm uses proxies defined in .npmrc file which might be set by using n
 I used **global-tunnel-ng** to ensure nodejs is using my proxies. Then, since **global-tunnel-ng** does not currently support *no-proxy* environment variable, my internal config function at *localhost* is not reachable behind proxy. To fix that, i initialized **global-tunnel-ng** just before passport.authenticate() in callback method and ended it right afterwards.
 
 ## Refresh Token Mechanism
-[Passport doesn't get involved in this process, because its separate from authentication.](https://stackoverflow.com/a/15627084)
+[Passport doesn't get involved in this process, because it is separate from authentication.](https://stackoverflow.com/a/15627084)
 
-[passport-oauth2-refresh](https://github.com/fiznool/passport-oauth2-refresh) is promising, however it does not accept *OIDCStrategy*.
+[passport-oauth2-refresh](https://github.com/fiznool/passport-oauth2-refresh) is promising, however it does not accept *OIDCStrategy*. However, i still could use it by encapsulating oauth2 related code and only passing required parameters. 
+
+- [ ] I am planning to publish a PR for above modification to [passport-oauth2-refresh](https://github.com/fiznool/passport-oauth2-refresh). 
 
 ## Code Samples
 [**Azure AD Node.js web app getting started:**](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-devquickstarts-openidconnect-nodejs) Use Passport to:
