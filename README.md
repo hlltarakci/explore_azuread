@@ -164,6 +164,10 @@ Over HTTPS, the web application uses the returned JWT access token to add the JW
 
 **Token expiration:** When the web application uses its authorization code to get a JWT access token, it also receives a JWT refresh token. When the access token expires, the refresh token can be used to re-authenticate the user without requiring them to sign in again. This refresh token is then used to authenticate the user, which results in a new access token and refresh token.
 
+## [Permission Scopes](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-graph-api-permission-scopes)
+
+You configure your app with the permission scopes appropriate to the access that it requires. Typically you do this through the Azure portal. During sign-in, users or administrators are given an opportunity to consent to allow your app access to their directory data with the permission scopes you configured. For this reason, you should choose permission scopes that provide the least level of privilege needed by your app. 
+
 ## Azure AD v1.0 Endpoint vs v2.0 Endpoint
 Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some limitations.
 
