@@ -1,5 +1,5 @@
 # Exploring Azure AD
-This is an exploration of Azure AD, notes taken and organized during reading [**Azure Active Directory for Developers Guide**](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide). Since it is a huge guide, this summary could be helpful. Most important concepts are highlighted and re-organized from developer's approach.
+This is an exploration of Azure AD, notes taken and organized during reading [**Azure Active Directory for Developers Guide**](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide). Since it is a huge guide, this summary could be helpful. Most important concepts are highlighted and re-organized from developer's approach. Moreover, some good articles and some troubleshooting is also presented. 
 
 ## [Terminology](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-dev-glossary)
 - **tenant:** An instance of an Azure AD directory is referred to as an Azure AD tenant. It provides several features, including:
