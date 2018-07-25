@@ -115,6 +115,22 @@ Common endpoint is **https://login.microsoftonline.com/common** for all director
 
 **The common endpoint is especially important to consider when developing your application because you’ll need the necessary logic to handle multiple tenants during sign-in, sign-out, and token validation.**
 
+[This](http://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/) is a great article about common endpoint.
+
+Every Azure AD tenant provides a bunch of endpoints that you can use to secure your applications. This is all fine if you are writing a line of business app, where the organization you want to authenticate with is known at development time. However, that does leave out a very large class of important applications: SaaS and multitenant applications.
+
+Common endpoint(https://login.microsoftonline.com/common/.well-known/openid-configuration) is a convention used to tell AAD “I don’t yet know which tenant should be used. Please render a generic credential gathering experience, and we’ll figure out the tenant depending on what account the user enters”. (late binding the tenant)
+
+- For line of business applications you do NOT want to late bind the tenant, in fact you want to ensure that the caller comes from your specific tenant and no other.
+
+- If the user enters the credentials of an account that is a guest in multiple tenants, AAD will not know which one to pick to get the token. 
+
+*Common is NOT a tenant:* rather, it is a convention that is used in place of a tenant for driving the real tenant identification process.
+
+*Problem:* Whereas in a real tenant you’d find actual tenantid values, the common endpoint cannot offer that given that the actual tenant that will be used is undefined. The “{tenantid}” string is clearly a placeholder rather than a real value. 
+
+*Workaround:* The only way around this is to override the default issuer validation, which is meant to work with fixed-tenant line of business apps, with your own validation logic. Or, if for some reason you are not interested in restricting access to your app per tenant you can simply turn off issuer validation and not provide any extra validation logic.
+
 ## Usage Scenario: a web application that needs to get resources from a web API
 
 ![diagram](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/active-directory-authentication-scenarios/web_app_to_web_api.png)
