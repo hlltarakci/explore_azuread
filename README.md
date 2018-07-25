@@ -131,6 +131,9 @@ Common endpoint(https://login.microsoftonline.com/common/.well-known/openid-conf
 
 *Workaround:* The only way around this is to override the default issuer validation, which is meant to work with fixed-tenant line of business apps, with your own validation logic. Or, if for some reason you are not interested in restricting access to your app per tenant you can simply turn off issuer validation and not provide any extra validation logic.
 
+[**Multi-tenant applications and caching access tokens:**](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#multi-tenant-applications-and-caching-access-tokens) 
+Multi-tenant applications can also get access tokens to call APIs that are protected by Azure AD. A common error when using the Active Directory Authentication Library (ADAL) with a multi-tenant application is to initially request a token for a user using /common, receive a response, then request a subsequent token for that same user also using /common. Because the response from Azure AD comes from a tenant, not /common, ADAL caches the token as being from the tenant. The subsequent call to /common to get an access token for the user misses the cache entry, and the user is prompted to sign in again. To avoid missing the cache, make sure subsequent calls for an already signed in user are made to the tenant’s endpoint.
+
 ## Usage Scenario: a web application that needs to get resources from a web API
 
 ![diagram](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/active-directory-authentication-scenarios/web_app_to_web_api.png)
