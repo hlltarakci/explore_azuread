@@ -169,7 +169,7 @@ Over HTTPS, the web application uses the returned JWT access token to add the JW
 You configure your app with the permission scopes appropriate to the access that it requires. Typically you do this through the Azure portal. During sign-in, users or administrators are given an opportunity to consent to allow your app access to their directory data with the permission scopes you configured. For this reason, you should choose permission scopes that provide the least level of privilege needed by your app. 
 
 ## Azure AD v1.0 Endpoint vs v2.0 Endpoint
-Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some limitations.
+Azure AD v1.0 endpoint supports only Microsoft work or school accounts. v2.0 endpoint also supports personal Microsoft accounts. v2.0 endpoint currently have some [limitations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-limitations).
 
 ## Hands-On / A PassportJS strategy for Microsoft Azure AD: [**passport-azure-ad**](https://github.com/AzureAD/passport-azure-ad)
 [Example Code](https://github.com/AzureADQuickStarts/WebApp-OpenIDConnect-NodeJS)
